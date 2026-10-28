@@ -14,6 +14,9 @@ Fuente: [docs/prd/invernadero-mvp.md](../prd/invernadero-mvp.md). Los números d
 **Reglas de negocio que le aplican (§6):**
 - 6.1 El intervalo de riego es un número entero de días, mínimo 1. Se valida al registrar la planta.
 - 6.4 Un riego no puede tener fecha futura ni anterior a la fecha de registro de la planta, pero sí una fecha pasada dentro de ese margen. Se valida al registrar el riego.
+- 6.8 Nombre, especie, ubicación e intervalo son obligatorios al registrar una planta.
+- 6.9 No se puede registrar un riego de una planta que no existe.
+- 6.10 La cantidad de agua de un riego se expresa en litros, admite decimales y debe ser mayor que 0.
 
 ## E2 · Cuidado
 
@@ -42,6 +45,6 @@ E2 también usa los datos que valida E1 (el intervalo de la regla 6.1 y las fech
 | 4.3 Consultar plantas que necesitan agua | E2 |
 | 4.4 Historial de riegos | E1 |
 
-Ningún punto del alcance queda fuera de las dos épicas. Todas las reglas de negocio (6.1–6.7) están asignadas a una de ellas.
+Ningún punto del alcance queda fuera de las dos épicas. Todas las reglas de negocio (6.1–6.10) están asignadas a una de ellas.
 
 Hay una diferencia en el otro sentido: E2 menciona el «reposo», que no tiene respaldo en el PRD (ver arriba).
