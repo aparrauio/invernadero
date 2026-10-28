@@ -169,48 +169,52 @@ Los criterios de aceptación todavía no cubren estas situaciones. Hay que decid
 - **Historia:** HU-1.1 (lo reutilizan todos los tickets). **Tipo:** Configuración.
 - **Descripción:** preparar el proyecto Node con Express y Mongoose, separando la app (`src/app.js`) del arranque y la conexión a MongoDB (`src/index.js`), con los comandos `npm run dev` y `npm test` funcionando.
 - **Definition of Done:**
-  - [ ] Existe `package.json` con los scripts `dev` y `test`, y `npm test` se ejecuta sin errores aunque todavía no haya tests.
-  - [ ] `src/app.js` exporta la app sin llamar a `listen`.
-  - [ ] `src/index.js` conecta a MongoDB y arranca el servidor con valores tomados de variables de entorno.
-  - [ ] No hay credenciales en el código ni en el repo, y `.env` está ignorado por git.
+  - [x] Existe `package.json` con los scripts `dev` y `test`, y `npm test` se ejecuta sin errores aunque todavía no haya tests.
+  - [x] `src/app.js` exporta la app sin llamar a `listen`.
+  - [x] `src/index.js` conecta a MongoDB y arranca el servidor con valores tomados de variables de entorno.
+  - [x] No hay credenciales en el código ni en el repo, y `.env` está ignorado por git.
   - [ ] Prettier está configurado y el código pasa el formato.
   - [ ] Los tests pueden usar una base de datos aislada que no sea la de desarrollo.
 - **Dependencias:** ninguna.
+- **Estado:** pendiente. Falta formatear `.claude/hooks/formatear.js` con Prettier. El punto de la base de datos aislada ya no aplica según la spec (X9) y hay que quitarlo de la DoD.
 
 #### T-02 · Planta y sus validaciones
 - **Historia:** HU-1.1. **Tipo:** Modelo/Dominio.
 - **Descripción:** crear el modelo de planta (en `src/models/`) y las validaciones de negocio de los datos de una planta nueva: campos obligatorios, intervalo entero de al menos 1 día y fecha de registro.
 - **Definition of Done:**
-  - [ ] La spec de HU-1.1 existe en `docs/specs/`.
-  - [ ] Se exige nombre, especie, ubicación e intervalo (regla 6.8).
-  - [ ] Se rechaza un intervalo que no sea un número entero o que sea menor que 1 (regla 6.1).
-  - [ ] Cada planta guarda su fecha de registro (regla 6.2).
-  - [ ] Los errores indican qué dato falla, y si faltan varios datos se informa de todos.
+  - [x] La spec de HU-1.1 existe en `docs/specs/`.
+  - [x] Se exige nombre, especie, ubicación e intervalo (regla 6.8).
+  - [x] Se rechaza un intervalo que no sea un número entero o que sea menor que 1 (regla 6.1).
+  - [x] Cada planta guarda su fecha de registro (regla 6.2).
+  - [x] Los errores indican qué dato falla, y si faltan varios datos se informa de todos.
   - [ ] Las reglas que no dependen de la base de datos están en `src/dominio/` como funciones puras y tienen tests unitarios.
-  - [ ] `npm test` pasa.
+  - [x] `npm test` pasa.
 - **Dependencias:** T-01.
+- **Estado:** pendiente. Las validaciones de la planta están en el modelo de Mongoose, no en `src/dominio/` como funciones puras.
 
 #### T-03 · Registrar una planta por la API
 - **Historia:** HU-1.1. **Tipo:** Endpoint/API.
 - **Descripción:** exponer bajo `/api/plantas` la operación de registrar una planta, usando el modelo y las validaciones de T-02 y devolviendo la planta creada o los errores de validación.
 - **Definition of Done:**
-  - [ ] Un registro válido crea la planta y devuelve sus datos y su fecha de registro.
-  - [ ] Un registro no válido no crea nada y devuelve los errores de T-02 de forma comprensible.
-  - [ ] Los errores de validación se distinguen de los errores inesperados del servidor.
-  - [ ] El router está en `src/routes/` y montado en `src/app.js`.
-  - [ ] `npm test` pasa.
+  - [x] Un registro válido crea la planta y devuelve sus datos y su fecha de registro.
+  - [x] Un registro no válido no crea nada y devuelve los errores de T-02 de forma comprensible.
+  - [x] Los errores de validación se distinguen de los errores inesperados del servidor.
+  - [x] El router está en `src/routes/` y montado en `src/app.js`.
+  - [x] `npm test` pasa.
 - **Dependencias:** T-02.
+- **Estado:** hecho.
 
 #### T-04 · Tests de aceptación de HU-1.1
 - **Historia:** HU-1.1. **Tipo:** Test.
 - **Descripción:** automatizar los criterios CA-1.1.1 a CA-1.1.6 contra la API, con `node --test`.
 - **Definition of Done:**
-  - [ ] Hay al menos un test por cada criterio, de CA-1.1.1 a CA-1.1.6.
-  - [ ] CA-1.1.5 se comprueba por separado para cada uno de los cuatro datos obligatorios.
+  - [x] Hay al menos un test por cada criterio, de CA-1.1.1 a CA-1.1.6.
+  - [x] CA-1.1.5 se comprueba por separado para cada uno de los cuatro datos obligatorios.
   - [ ] Los tests que esperan un rechazo comprueban también que no se ha creado ninguna planta.
   - [ ] Los tests usan la base de datos aislada de T-01 y la dejan limpia entre tests.
-  - [ ] `npm test` pasa.
+  - [x] `npm test` pasa.
 - **Dependencias:** T-03.
+- **Estado:** pendiente. Los tests automáticos no comprueban que no se crea la planta (solo se comprobó una vez con curl). El punto de la base de datos aislada ya no aplica según la spec (X9).
 
 ### HU-1.2 · Registrar un riego
 
@@ -218,37 +222,40 @@ Los criterios de aceptación todavía no cubren estas situaciones. Hay que decid
 - **Historia:** HU-1.2. **Tipo:** Modelo/Dominio.
 - **Descripción:** crear el modelo de riego (en `src/models/`), asociado a una planta, y las validaciones de negocio de un riego nuevo: cantidad de agua y fecha en días de calendario según la hora local del invernadero.
 - **Definition of Done:**
-  - [ ] La spec de HU-1.2 existe en `docs/specs/`.
+  - [x] La spec de HU-1.2 existe en `docs/specs/`.
   - [ ] Cada riego pertenece a una planta y guarda su fecha y su cantidad de agua en litros.
   - [ ] Se aceptan cantidades con decimales y se rechaza una cantidad de 0 o negativa (regla 6.10).
-  - [ ] Se acepta una fecha pasada desde el día de registro de la planta, y se rechaza una fecha futura o anterior a ese día (regla 6.4, D5).
-  - [ ] Las fechas se comparan como días de calendario y se ignora la hora (regla 6.5), así que un riego el mismo día del registro de la planta se acepta.
+  - [x] Se acepta una fecha pasada desde el día de registro de la planta, y se rechaza una fecha futura o anterior a ese día (regla 6.4, D5).
+  - [x] Las fechas se comparan como días de calendario y se ignora la hora (regla 6.5), así que un riego el mismo día del registro de la planta se acepta.
   - [ ] Las reglas de fechas y cantidad están en `src/dominio/` como funciones puras y tienen tests unitarios, incluidos los casos alrededor de la medianoche.
-  - [ ] `npm test` pasa.
+  - [x] `npm test` pasa.
 - **Dependencias:** T-01, T-02.
+- **Estado:** pendiente. La cantidad se guarda en ml enteros (spec X1), no en litros con decimales, y su validación está en el modelo, no en `src/dominio/`.
 
 #### T-06 · Registrar un riego por la API
 - **Historia:** HU-1.2. **Tipo:** Endpoint/API.
 - **Descripción:** exponer bajo `/api/plantas/:id/riegos` la operación de registrar un riego de una planta, usando el modelo y las validaciones de T-05.
 - **Definition of Done:**
-  - [ ] Un riego válido, de hoy o con fecha pasada, queda registrado con su fecha y la cantidad indicada, y se devuelven sus datos.
-  - [ ] Un riego de una planta que no existe se rechaza con un error distinto al de validación y no registra nada (regla 6.9).
-  - [ ] Un riego no válido no registra nada y devuelve los errores de T-05 de forma comprensible.
-  - [ ] No se pide responsable.
-  - [ ] El router está en `src/routes/` y montado en `src/app.js`.
-  - [ ] `npm test` pasa.
+  - [x] Un riego válido, de hoy o con fecha pasada, queda registrado con su fecha y la cantidad indicada, y se devuelven sus datos.
+  - [x] Un riego de una planta que no existe se rechaza con un error distinto al de validación y no registra nada (regla 6.9).
+  - [x] Un riego no válido no registra nada y devuelve los errores de T-05 de forma comprensible.
+  - [x] No se pide responsable.
+  - [x] El router está en `src/routes/` y montado en `src/app.js`.
+  - [x] `npm test` pasa.
 - **Dependencias:** T-05. Si el router comparte archivo con el de plantas, también T-03.
+- **Estado:** hecho. La ruta es `POST /api/riegos` (spec X7), no `/api/plantas/:id/riegos` como decía la descripción.
 
 #### T-07 · Tests de aceptación de HU-1.2
 - **Historia:** HU-1.2. **Tipo:** Test.
 - **Descripción:** automatizar los criterios CA-1.2.1 a CA-1.2.9 contra la API, con `node --test`.
 - **Definition of Done:**
   - [ ] Hay al menos un test por cada criterio, de CA-1.2.1 a CA-1.2.9.
-  - [ ] Los tests de fechas («hoy», 23:59, mañana, hace 3 días, antes del registro) no dependen del día ni de la hora en que se ejecutan.
+  - [x] Los tests de fechas («hoy», 23:59, mañana, hace 3 días, antes del registro) no dependen del día ni de la hora en que se ejecutan.
   - [ ] Los tests que esperan un rechazo comprueban también que la planta no ha ganado ningún riego.
   - [ ] Los tests usan la base de datos aislada de T-01 y la dejan limpia entre tests.
-  - [ ] `npm test` pasa.
+  - [x] `npm test` pasa.
 - **Dependencias:** T-06.
+- **Estado:** pendiente. CA-1.2.5 no tiene test automático (solo curl), y los tests no comprueban que la planta no gana riegos. El punto de la base de datos aislada ya no aplica según la spec (X9).
 
 ### Orden de ejecución sugerido
 
