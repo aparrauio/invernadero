@@ -3,7 +3,7 @@
 - **Historias:** HU-1.1 · Registrar una planta, y HU-1.2 · Registrar un riego (que absorbe HU-1.3). Ver [docs/backlog/E1-plantas-y-riegos.md](../backlog/E1-plantas-y-riegos.md).
 - **Sprint:** 2026-10-28.
 - **Tickets:** T-01 a T-07.
-- **Estado:** borrador. Antes de implementar hay que confirmar los puntos de la sección 0.
+- **Estado:** implementada. X1, X5 y X6 confirmados por el cliente (2026-11-04); el resto de la sección 0 sigue como deuda técnica en el backlog.
 
 ## 0. Diferencias con el backlog y el PRD
 
@@ -11,12 +11,12 @@ Esta spec sigue el encargo técnico recibido. En varios puntos ese encargo cambi
 
 | # | En esta spec | En el backlog o el PRD | Cómo se ha resuelto aquí |
 |---|---|---|---|
-| X1 | La cantidad de agua se guarda como `cantidadMl`. | D4 y regla 6.10: litros con decimales. | `cantidadMl` es un número entero de mililitros, mayor o igual que 1. Equivale a litros con hasta 3 decimales: 0,5 L = 500 ml. Así se resuelve también la precisión. Hay que confirmar si el cliente acepta indicar la cantidad en ml. |
+| X1 · **Confirmado** | La cantidad de agua se guarda como `cantidadMl`. | D4 y regla 6.10: litros con decimales. | `cantidadMl` es un número entero de mililitros, mayor o igual que 1. Equivale a litros con hasta 3 decimales: 0,5 L = 500 ml. Así se resuelve también la precisión. Hay que confirmar si el cliente acepta indicar la cantidad en ml. |
 | X2 | El riego tiene un campo `cuidador`. | §7 [SUPUESTO]: un riego se registra sin responsable. DoD de T-06: no se pide responsable. | `cuidador` es un texto **opcional**. No rompe el supuesto, pero permite guardarlo. Hay que confirmar si es obligatorio y actualizar el §7. |
 | X3 | La planta tiene `enReposo` (por defecto `false`). | El PRD no define el reposo (ver [epicas.md](../backlog/epicas.md), E2). | Solo se guarda. En este sprint no afecta a ninguna regla ni al cálculo de E2. |
 | X4 | La planta tiene `cuidadosEspeciales[]` con `tipo` y `nota`. | No aparece en el PRD ni en el backlog. | Es opcional. Dentro de cada elemento, `tipo` es obligatorio y `nota` opcional. No afecta a ninguna regla. |
-| X5 | `GET /api/plantas` lista todas las plantas. | HU-1.5 está fuera de alcance, pendiente de confirmar. | Se incluye. Resuelve el problema de que el cuidador no conozca el id de una planta. Hay que pasar HU-1.5 al sprint. |
-| X6 | `GET /api/plantas/:id/riegos` devuelve el historial de riegos. | HU-1.4 está por refinar y no entra en el sprint. | Se incluye con un comportamiento mínimo (sección 2.4). HU-1.4 sigue sin criterios de aceptación. |
+| X5 · **Confirmado** | `GET /api/plantas` lista todas las plantas. | HU-1.5 está fuera de alcance, pendiente de confirmar. | Se incluye. Resuelve el problema de que el cuidador no conozca el id de una planta. Hay que pasar HU-1.5 al sprint. |
+| X6 · **Confirmado** | `GET /api/plantas/:id/riegos` devuelve el historial de riegos. | HU-1.4 está por refinar y no entra en el sprint. | Se incluye con un comportamiento mínimo (sección 2.4). HU-1.4 sigue sin criterios de aceptación. |
 | X7 | Un riego se registra con `POST /api/riegos` e indica la planta en el cuerpo. | T-06 y AGENTS.md: rutas de riegos bajo `/api/plantas/:id/riegos`. | Se sigue el encargo. Solo el historial queda bajo `/api/plantas/:id/riegos`. |
 | X8 | La fecha de un riego es, por defecto, el momento actual. | Caso borde abierto: «riego sin fecha». | Queda resuelto: si no se indica la fecha, se toma la de ahora. |
 | X9 | La verificación es con tests sin base de datos o con curl. | T-04 y T-07 piden tests de aceptación automáticos contra la API con una base de datos aislada. | Se sigue el encargo (sección 4). Hay que actualizar la DoD de T-01, T-04 y T-07. |

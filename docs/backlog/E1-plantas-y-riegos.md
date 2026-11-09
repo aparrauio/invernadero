@@ -131,8 +131,43 @@ Como cuidador, quiero anotar un riego que hice en un día pasado y olvidé regis
 ### HU-1.4 · Consultar el historial de riegos de una planta
 Como cuidador, quiero ver todos los riegos registrados de una planta, para comprobar cuándo se ha regado y detectar si falta alguno.
 
-- **Estado:** por refinar.
+- **Estado:** refinada. Endpoint existente: `GET /api/plantas/:id/riegos` (spec 01, 2.4).
 - **Alcance:** §4.4.
+
+**Criterios de aceptación:**
+
+- **CA-1.4.1 · Historial ordenado**
+  DADO una planta con riegos de hace 3 días y de hoy,
+  CUANDO el cuidador consulta su historial,
+  ENTONCES ve los dos riegos, con su fecha, cantidad en ml y cuidador, y el de hoy aparece primero.
+
+- **CA-1.4.2 · Planta sin riegos**
+  DADO una planta registrada que nunca se ha regado,
+  CUANDO el cuidador consulta su historial,
+  ENTONCES ve una lista vacía, no un error.
+
+- **CA-1.4.3 · Planta inexistente**
+  DADO un identificador que no corresponde a ninguna planta,
+  CUANDO el cuidador consulta su historial,
+  ENTONCES se le indica que la planta no existe.
+
+### HU-1.5 · Listar las plantas registradas
+Como cuidador, quiero ver la lista de todas las plantas registradas, para encontrar la que busco y consultar su historial.
+
+- **Estado:** refinada. Entra al MVP como §4.5 (decisión del cliente, 2026-11-04). Endpoint existente: `GET /api/plantas` (spec 01, 2.2).
+- **Alcance:** §4.5.
+
+**Criterios de aceptación:**
+
+- **CA-1.5.1 · Lista completa**
+  DADO un invernadero con tres plantas registradas,
+  CUANDO el cuidador consulta la lista de plantas,
+  ENTONCES ve las tres, con nombre, especie, ubicación e intervalo de riego, de la más antigua a la más reciente.
+
+- **CA-1.5.2 · Invernadero vacío**
+  DADO un invernadero sin plantas,
+  CUANDO el cuidador consulta la lista,
+  ENTONCES ve una lista vacía, no un error.
 
 ## Casos borde sin cubrir (HU-1.1 y HU-1.2)
 
@@ -273,11 +308,6 @@ El camino crítico es T-01 → T-02 → T-05 → T-06 → T-07. Si ese camino se
 
 Estas historias aparecen de forma natural al descomponer la épica, pero el PRD las excluye o no las incluye en el MVP. Se dejan anotadas para no perderlas.
 
-### HU-1.5 · Listar las plantas registradas — fuera de alcance (pendiente de confirmar)
-Como cuidador, quiero ver la lista de todas las plantas registradas, para encontrar la que busco y consultar su historial.
-
-- **Motivo:** el §4 no incluye un listado general de plantas. La única consulta de plantas del MVP es la de las que necesitan agua (§4.3, épica E2). Sin un listado, el cuidador necesita conocer el identificador de la planta para HU-1.2, HU-1.3 y HU-1.4. Conviene confirmar si debe entrar en el MVP.
-
 ### HU-1.6 · Cambiar el intervalo de riego de una planta — fuera de alcance (punto abierto)
 Como cuidador, quiero cambiar el intervalo de riego de una planta ya registrada, para ajustarlo si me equivoqué o si la planta necesita otro ritmo.
 
@@ -301,3 +331,22 @@ Como cuidador, quiero corregir o borrar un riego mal registrado, para que un err
 | 4.1 Registrar planta | HU-1.1 |
 | 4.2 Registrar riego (incluido olvidado) | HU-1.2 (absorbe HU-1.3) |
 | 4.4 Historial de riegos | HU-1.4 |
+| 4.5 Lista de plantas | HU-1.5 |
+
+## Decisiones del cliente (2026-11-04)
+
+| # | Decisión |
+|---|---|
+| D6 | La cantidad de agua se registra y se muestra en mililitros (ml). Confirma X1 de la spec 01. |
+| D7 | HU-1.5 (lista de plantas) entra al MVP como §4.5. |
+| D8 | En este sprint solo se arregla lo que bloquea al frontend. El resto queda como deuda técnica. |
+
+## Deuda técnica
+
+- T-02 y T-05: las validaciones de planta y riego están en los modelos de Mongoose, no en `src/dominio/` como funciones puras.
+- T-04 y T-07: los tests no comprueban que un rechazo deja sin crear la planta o el riego.
+- T-07: CA-1.2.5 (planta inexistente) solo se verificó con curl; no tiene test automático.
+- T-01, T-04 y T-07: quitar de la DoD la base de datos aislada, que ya no aplica (spec 01, X9).
+- AGENTS.md dice que los riegos van bajo `/api/plantas/:id/riegos`, pero el registro es `POST /api/riegos` (spec 01, X7).
+- X2, X3 y X4 de la spec 01 (cuidador, reposo y cuidados especiales) siguen sin confirmar con el cliente.
+- Casos borde abiertos de HU-1.1 y HU-1.2 (nombres repetidos, máximos, dos riegos el mismo día).
