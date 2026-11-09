@@ -18,6 +18,8 @@ Estas decisiones resuelven casos borde de HU-1.1 y HU-1.2. Ya están incorporada
 
 ## Historias del MVP
 
+**Estado de entrega (2026-11-04):** HU-1.1, HU-1.2, HU-1.4 y HU-1.5 entregadas en backend y frontend (specs 01 y 02, [auditoría del frontend](../AUDITORIA-frontend.md)). La deuda técnica sigue pendiente.
+
 ### HU-1.1 · Registrar una planta
 Como cuidador, quiero registrar una planta con su nombre, especie, ubicación e intervalo de riego en días, para que el invernadero sepa qué planta es, dónde está y cada cuánto hay que regarla.
 
