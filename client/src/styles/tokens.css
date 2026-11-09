@@ -1,0 +1,30 @@
+/* Variables del sistema de diseño. Fuente: DESIGN.md */
+:root {
+  --color-primario: #2f6b4f;
+  --color-acento: #6a4c9c;
+  --color-texto: #1e2b22;
+  --color-texto-secundario: #4e5e53;
+  --color-fondo: #f3f6f1;
+  --color-superficie: #ffffff;
+  --color-borde: #c9d6ca;
+  --color-borde-campo: #7a8a7f;
+  --color-exito-fondo: #e3f0e7;
+  --color-error: #b3261e;
+  --color-error-fondo: #fbecea;
+  --color-aviso: #8a5300;
+  --color-aviso-fondo: #fbf1df;
+
+  --fuente-titulos: "Bricolage Grotesque", system-ui, sans-serif;
+  --fuente-texto: "Atkinson Hyperlegible", system-ui, sans-serif;
+
+  --espacio-1: 4px;
+  --espacio-2: 8px;
+  --espacio-3: 12px;
+  --espacio-4: 16px;
+  --espacio-5: 24px;
+  --espacio-6: 32px;
+  --espacio-7: 48px;
+
+  --radio-control: 8px;
+  --radio-tarjeta: 12px;
+}
