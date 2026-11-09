@@ -23,3 +23,288 @@ h1 {
   font-weight: 600;
   font-size: 32px;
 }
+
+h2 {
+  margin: 0 0 var(--espacio-4);
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-acento);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+.cabecera {
+  border-bottom: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+}
+
+.marca {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--espacio-3) var(--espacio-4);
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-primario);
+}
+
+.seccion {
+  margin-top: var(--espacio-6);
+}
+
+.tarjeta {
+  padding: var(--espacio-5);
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.texto-secundario {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+}
+
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Tabla de plantas */
+.tabla-plantas {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  overflow: hidden;
+}
+
+.tabla-plantas th {
+  padding: var(--espacio-3) var(--espacio-4);
+  background: var(--color-primario);
+  color: var(--color-superficie);
+  text-align: left;
+  font-weight: 700;
+}
+
+.tabla-plantas td {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-top: 1px solid var(--color-borde);
+}
+
+.enlace-planta,
+.enlace-volver {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+}
+
+/* Historial */
+.historial {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.historial li {
+  padding: var(--espacio-3) var(--espacio-4);
+}
+
+.historial li + li {
+  border-top: 1px solid var(--color-borde);
+}
+
+.historial-fecha {
+  font-weight: 700;
+}
+
+.datos-planta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2) var(--espacio-6);
+  margin: var(--espacio-3) 0 0;
+}
+
+.datos-planta dt {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+}
+
+.datos-planta dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Formularios */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.campo label {
+  font-weight: 700;
+}
+
+.campo input {
+  min-height: 44px;
+  padding: var(--espacio-2) var(--espacio-3);
+  border: 1px solid var(--color-borde-campo);
+  border-radius: var(--radio-control);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  font: inherit;
+}
+
+.campo input[aria-invalid="true"] {
+  border: 2px solid var(--color-error);
+}
+
+.campo-ayuda {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+}
+
+.campo-error {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-1);
+  color: var(--color-error);
+  font-size: 14px;
+}
+
+.icono {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+/* Botones */
+.boton-primario,
+.boton-secundario {
+  min-height: 44px;
+  padding: var(--espacio-3) var(--espacio-5);
+  border-radius: var(--radio-control);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.boton-primario {
+  align-self: flex-start;
+  border: none;
+  background: var(--color-primario);
+  color: var(--color-superficie);
+}
+
+.boton-primario:disabled {
+  cursor: progress;
+}
+
+.boton-secundario {
+  border: 2px solid var(--color-primario);
+  background: var(--color-superficie);
+  color: var(--color-primario);
+}
+
+/* Mensajes */
+.mensaje {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  border-radius: var(--radio-tarjeta);
+}
+
+.mensaje .icono {
+  margin-top: var(--espacio-1);
+}
+
+.mensaje-exito {
+  background: var(--color-exito-fondo);
+  color: var(--color-primario);
+}
+
+.mensaje-error {
+  background: var(--color-error-fondo);
+  color: var(--color-error);
+}
+
+.lista-vacia {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  padding: var(--espacio-5);
+  border: 1px dashed var(--color-borde-campo);
+  border-radius: var(--radio-tarjeta);
+}
+
+/* Móvil: cada fila de la tabla se convierte en una tarjeta */
+@media (max-width: 639px) {
+  .tabla-plantas,
+  .tabla-plantas tbody,
+  .tabla-plantas tr,
+  .tabla-plantas td {
+    display: block;
+  }
+
+  .tabla-plantas {
+    border: none;
+    background: none;
+  }
+
+  .tabla-plantas thead {
+    display: none;
+  }
+
+  .tabla-plantas tr {
+    margin-bottom: var(--espacio-3);
+    padding: var(--espacio-3) var(--espacio-4);
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-tarjeta);
+  }
+
+  .tabla-plantas td {
+    padding: var(--espacio-1) 0;
+    border: none;
+  }
+
+  .tabla-plantas td:not(:first-child)::before {
+    content: attr(data-etiqueta) ": ";
+    color: var(--color-texto-secundario);
+    font-size: 14px;
+  }
+
+  .tabla-plantas td:first-child .enlace-planta {
+    font-size: 18px;
+  }
+}
