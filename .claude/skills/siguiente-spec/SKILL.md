@@ -30,9 +30,10 @@ disable-model-invocation: true
 ## Implementar
 
 10. Para cada criterio: escribe primero el test, comprueba que falla, escribe el código y comprueba que pasa. Al final, `npm test` debe pasar completo.
-11. No cambies nada que la spec no pida. Si encuentras algo fuera de alcance, anótalo en una sección «Pendientes» al final de la spec.
-12. Haz el commit tú mismo siguiendo las reglas de `.claude/skills/commit/SKILL.md`: agrega solo los archivos de la spec y `docs/specs/`, y usa el número de spec en el mensaje (por ejemplo, `feat(spec-04): validar la planta en el dominio`).
-13. Termina con un resumen de dos líneas. **No hagas push ni abras el PR:** al terminar, el hook de revisión adversarial revisa el cambio y, si lo aprueba, abre el PR.
+11. **Si la spec tiene una sección «Pantallas» con wireframes:** con la API y el cliente corriendo, saca una captura de cada estado con `npm run captura` (a 390 px y, si hay wireframe de escritorio, a 1280 px) en `docs/specs/<número>-<slug>/capturas/`. Compara cada captura con su wireframe: la estructura, el orden y los textos deben coincidir; los colores y las fuentes salen de DESIGN.md. Corrige las diferencias de estructura y lista las que queden.
+12. No cambies nada que la spec no pida. Si encuentras algo fuera de alcance, anótalo en una sección «Pendientes» al final de la spec.
+13. Haz el commit tú mismo siguiendo las reglas de `.claude/skills/commit/SKILL.md`: agrega solo los archivos de la spec y `docs/specs/` (incluidas las capturas), y usa el número de spec en el mensaje (por ejemplo, `feat(spec-04): validar la planta en el dominio`).
+14. Termina con un resumen de dos líneas. **No hagas push ni abras el PR:** al terminar, el hook de revisión adversarial revisa el cambio y, si lo aprueba, abre el PR.
 
 ## Cuando el hook responda
 

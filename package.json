@@ -8,13 +8,15 @@
   },
   "scripts": {
     "test": "node --test",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "captura": "node scripts/captura.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "playwright": "^1.65.1",
     "prettier": "^3.9.10"
   },
   "dependencies": {

@@ -335,6 +335,22 @@ Como cuidador, quiero corregir o borrar un riego mal registrado, para que un err
 | 4.4 Historial de riegos | HU-1.4 |
 | 4.5 Lista de plantas | HU-1.5 |
 
+### HU-1.8 · Registrar un riego rápido desde la lista
+Como cuidador, quiero registrar un riego desde la lista de plantas sin abrir su detalle, para anotarlo en segundos mientras recorro las mesas.
+
+- **Estado:** refinada (ejemplo de referencia del taller de wireframes). Usa `POST /api/riegos`; no cambia el backend.
+- **Decisión:** el panel sugiere 500 ml; la fecha es hoy y no se pide cuidador (para eso está el detalle).
+
+**Criterios de aceptación:**
+
+- **CA-1.8.1 · Acción en cada planta:** DADO la lista de plantas, CUANDO el cuidador la ve, ENTONCES cada planta tiene una acción «Regar».
+- **CA-1.8.2 · Panel de riego:** DADO la lista, CUANDO pulsa «Regar» en una planta, ENTONCES se abre un panel con el nombre de la planta, el campo «Cantidad (ml)» con 500 escrito y los botones «Guardar riego» y «Cancelar».
+- **CA-1.8.3 · Riego guardado:** DADO el panel con 500, CUANDO pulsa «Guardar riego», ENTONCES el panel se cierra y ve «Riego guardado para <nombre>.» sin salir de la lista.
+- **CA-1.8.4 · Cantidad no válida:** DADO una cantidad de 0, CUANDO pulsa «Guardar riego», ENTONCES ve el mensaje de la API debajo del campo y el panel sigue abierto.
+- **CA-1.8.5 · Sin conexión:** DADO la API apagada, CUANDO pulsa «Guardar riego», ENTONCES ve un mensaje de error dentro del panel y la cantidad escrita se conserva.
+- **CA-1.8.6 · Guardando:** DADO que pulsó «Guardar riego», MIENTRAS la API responde, ENTONCES el botón dice «Guardando…» y no se puede pulsar otra vez.
+- **CA-1.8.7 · Móvil:** DADO una pantalla de 390 px, CUANDO abre el panel, ENTONCES el panel ocupa el ancho de la pantalla y la acción «Regar» mide al menos 44 px de alto.
+
 ## Decisiones del cliente (2026-11-04)
 
 | # | Decisión |

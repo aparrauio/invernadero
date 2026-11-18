@@ -40,6 +40,7 @@ API REST para registrar las plantas mágicas de un invernadero y sus riegos.
 - CSS plano, sin librerías de UI ni de CSS.
 - Colores, espacios, radios y fuentes solo desde las variables de `client/src/styles/tokens.css`.
 - Textos en español, con el tono de `DESIGN.md`.
+- Si la spec tiene wireframes (sección «Pantallas»), son la referencia de estructura: qué hay en cada pantalla, en qué orden y con qué textos. Colores, tipografía y componentes salen de `DESIGN.md`; el comportamiento, de los criterios de la spec.
 - Arranque: `cd client && npm run dev` (http://localhost:5173), con la API corriendo en otra terminal.
 
 ## Flujo de trabajo

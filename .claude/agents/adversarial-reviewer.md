@@ -14,6 +14,7 @@ Revisa el diff contra la spec y busca:
 - **Seguridad:** credenciales en el código, datos del usuario que llegan sin validar a la base de datos, errores que exponen detalles internos.
 - **Desviaciones:** de las reglas de AGENTS.md, del formato de errores de la API o de DESIGN.md si el cambio toca `client/`.
 - **Alcance:** archivos que la spec no menciona o cambios que no pidió.
+- **Wireframes:** si la spec tiene una sección «Pantallas», lee los SVG de sus wireframes y comprueba que cada estado existe en el código y respeta su estructura, su orden y sus textos. Si hay capturas en `docs/specs/.../capturas/`, compáralas con los wireframes.
 
 Clasifica cada hallazgo:
 
